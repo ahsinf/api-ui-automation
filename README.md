@@ -65,10 +65,10 @@ Ensure you have the following installed:
 1. **Run UI tests with video recording and screenshot features:**
    ```bash
    # Run tests in Headless mode (browser hidden)
-   PYTHONPATH=. python -m pytest -v tests/ui/test_sauce_demo.py --video on --html=report_ui.html --self-contained-html
+   python -m pytest -v tests/ui/test_sauce_demo.py --video on --html=report_ui.html --self-contained-html
 
    # Run tests in Headed mode (browser visible)
-   PYTHONPATH=. python -m pytest -v tests/ui/test_sauce_demo.py --headed
+   python -m pytest -v tests/ui/test_sauce_demo.py --headed
    ```
 
 ## 🎁 Bonus Assignment: Data Generation
