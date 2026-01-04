@@ -1,3 +1,5 @@
+playwright
+pytest-playwright
 requests==2.31.0
 pytest==9.0.2
 requests-mock==1.12.1
