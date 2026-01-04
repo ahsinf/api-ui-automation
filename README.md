@@ -6,20 +6,15 @@ The framework utilizes industry standards such as the Page Object Model (POM) fo
 
 ## 📋 Test Coverage
 
-1. API Testing (Reqres.in - 33 Test Cases)
+1. **API Testing (Reqres.in - 33 Test Cases)**
 Testing the List Users endpoint with various scenarios:
-
 Positive Cases: Validation of HTTP 200 status, JSON structure, data accuracy, and data type formatting.
-
 Negative Cases: Handling of invalid page parameters (strings, special characters, negative numbers, zero, and null).
-
 Edge & Boundary: Validation of optional fields, SLA response time (< 2s), server error simulations (500/408), and page limit boundaries.
 
-2. UI Testing (SauceDemo - 16 Test Cases)
+2. **UI Testing (SauceDemo - 16 Test Cases)**
 Comprehensive end-to-end testing using the Page Object Model (POM):
-
 Positive Cases (TC-UI-001 - 010): Successful login, dashboard element validation (headers, product list, cart icon), product sorting (A-Z, Z-A, Price Low-High), and Logout functionality.
-
 Negative Cases (TC-UI-011 - 016): Login with incorrect passwords, non-existent users, empty fields (null), and locked-out account validation.
 
 ---
@@ -75,6 +70,17 @@ Ensure you have the following installed:
    # Run tests in Headed mode (browser visible)
    PYTHONPATH=. python -m pytest -v tests/ui/test_sauce_demo.py --headed
    ```
+
+## 🎁 Bonus Assignment: Data Generation
+This script generates a CSV report (`user_data_report.csv`) from the Reqres Page 2 dataset.
+
+**Technical Implementation:**
+To ensure reliability against live server instability or Cloudflare WAF blocking (403 Forbidden), the script uses a **Fallback Architecture**. It attempts a live API fetch first; if the server is unreachable or blocks the request, it automatically utilizes a validated internal dataset to guarantee the report is generated correctly.
+
+**To run:**
+```bash
+python generate_user_data.py
+```
 
 ## 📊 Reporting
 The framework provi
