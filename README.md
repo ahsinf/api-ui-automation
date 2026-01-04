@@ -1,36 +1,26 @@
-# 🚀 Reqres.in API Automation Testing Framework
-
-[![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
-[![Framework](https://img.shields.io/badge/framework-pytest-red.svg)](https://docs.pytest.org/)
-[![Mocking](https://img.shields.io/badge/library-requests--mock-orange.svg)](https://requests-mock.readthedocs.io/)
-
-A comprehensive API automation testing suite designed for the **List Users** endpoint at [Reqres.in](https://reqres.in/). This project implements 33 manual test cases into a robust automation framework, covering positive, negative, edge, and boundary scenarios.
+# 🚀 API & UI Automation Testing Framework
+This repository contains an integrated automated testing framework for API Testing (Reqres.in) and UI Testing (SauceDemo).
+The framework utilizes industry standards such as the Page Object Model (POM) for UI and Dynamic Mocking for API stability.
 
 ---
 
-## 📋 Test Coverage (33 Test Cases)
+## 📋 Test Coverage
 
-The test suite is categorized based on standard QA methodologies:
+1. API Testing (Reqres.in - 33 Test Cases)
+Testing the List Users endpoint with various scenarios:
 
-### 1. Positive Cases (TC-API-001 - 010)
-* **Validation:** HTTP Status Code 200 OK.
-* **Response Structure:** Verified existence of key fields (`page`, `per_page`, `data`, etc.).
-* **Data Accuracy:** Verified page values match request parameters.
-* **Data Format:** Ensured numeric IDs, valid Email formats, and Avatar URL strings.
+Positive Cases: Validation of HTTP 200 status, JSON structure, data accuracy, and data type formatting.
 
-### 2. Negative Cases (TC-API-011 - 021)
-* **Input Handling:** Verified graceful handling of invalid `page` parameters (Strings, Special Characters, Negative Numbers, Zero, and Null).
-* **Data Integrity:** Validated that returned data is not null and maintains correct data types even under stress.
+Negative Cases: Handling of invalid page parameters (strings, special characters, negative numbers, zero, and null).
 
-### 3. Edge Cases (TC-API-022 - 028)
-* **Optional Fields:** Ensured `last_name` and `avatar` keys exist in the structure (even if values are empty).
-* **Performance:** Validated Response Time is within SLA (< 2 seconds).
-* **Robustness:** Verified API ignores unexpected additional query fields.
-* **Error Handling:** Simulated server-side failures (408 Timeout & 500 Internal Server Error).
+Edge & Boundary: Validation of optional fields, SLA response time (< 2s), server error simulations (500/408), and page limit boundaries.
 
-### 4. Boundary Cases (TC-API-029 - 033)
-* **Pagination Limits:** Validated behavior at minimum (Page 1) and maximum valid data pages.
-* **Out-of-Bounds:** Ensured empty data arrays are returned when requesting non-existent pages (e.g., Page 999).
+2. UI Testing (SauceDemo - 16 Test Cases)
+Comprehensive end-to-end testing using the Page Object Model (POM):
+
+Positive Cases (TC-UI-001 - 010): Successful login, dashboard element validation (headers, product list, cart icon), product sorting (A-Z, Z-A, Price Low-High), and Logout functionality.
+
+Negative Cases (TC-UI-011 - 016): Login with incorrect passwords, non-existent users, empty fields (null), and locked-out account validation.
 
 ---
 
@@ -59,8 +49,14 @@ Ensure you have the following installed:
    ```bash
    pip install -r requirements.txt
    ```
+4. **Install Playwright Browsers**
+   This command downloads the browser binaries (Chromium, Firefox, WebKit) that Playwright uses.
+   ```bash
+   playwright install
+   ```
 
 ## 🏃 Running the Tests
+🔹 API Automation (Reqres.in)
 1. **Execute tests in the terminal:**
    ```bash
    pytest tests/api/test_reqres_api.py -v
@@ -70,13 +66,23 @@ Ensure you have the following installed:
    pytest tests/api/test_reqres_api.py --html=report_api.html --self-contained-html
    ```
 
+🔹 UI Automation (SauceDemo)
+1. **Run UI tests with video recording and screenshot features:**
+   ```bash
+   # Run tests in Headless mode (browser hidden)
+   PYTHONPATH=. python -m pytest -v tests/ui/test_sauce_demo.py --video on --html=report_ui.html --self-contained-html
+
+   # Run tests in Headed mode (browser visible)
+   PYTHONPATH=. python -m pytest -v tests/ui/test_sauce_demo.py --headed
+   ```
+
 ## 📊 Reporting
-The project utilizes pytest-html to create professional visual reports.
-- After execution, open report_api.html in your browser (Chrome/Safari).
-- Key Report Features:
-  - Success Rate Pie Chart.
-  - Detailed status per Test Case ID.
-  - Custom descriptive error messages for any failed assertions.
+The framework provi
+HTML Reports: Interactive reports (report_api.html & report_ui.html) featuring success rate charts, test durations, and failure details.
+Screenshots: Automated screen capture during UI execution, embedded directly into the HTML report.
+Video Recordings: Full execution videos saved in the test-results/ directory (enabled via --video on).
+API Response Logs: JSON response bodies printed to the terminal for audit purposes (enabled via -s).
 
 ## 💡 Framework Key Features
-Dynamic Mocking: Uses requests-mock callbacks to simulate various server conditions locally. This bypasses Cloudflare bot protection (Error 403) and ensures ultra-fast, stable execution.
+- Dynamic Mocking: Uses requests-mock callbacks to simulate various server conditions locally. This bypasses Cloudflare bot protection (Error 403) and ensures ultra-fast, stable execution.
+- Page Object Model (POM): Separates test logic from UI selectors, ensuring high maintainability and reduced code duplication.
