@@ -37,14 +37,17 @@ Ensure you have the following installed:
 2. **Create a Virtual Environment:**
    ```bash
    python -m venv venv
+   ```
+3. **Activate Virtual Environment:**
+   ```bash
    source venv/bin/activate  # For macOS/Linux
    venv\Scripts\activate     # For Windows
    ```
-3. **Install Required Libraries:**
+4. **Install Required Libraries:**
    ```bash
    pip install -r requirements.txt
    ```
-4. **Install Playwright Browsers**
+5. **Install Playwright Browsers**
    This command downloads the browser binaries (Chromium, Firefox, WebKit) that Playwright uses.
    ```bash
    playwright install
