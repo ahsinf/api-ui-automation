@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Local Report
+report_api.html
+report.html
+assets/
+
+# Virtual Environment
+venv/
+.env

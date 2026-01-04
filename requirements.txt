@@ -1,0 +1,4 @@
+requests==2.31.0
+pytest==9.0.2
+requests-mock==1.12.1
+pytest-html==4.1.1
